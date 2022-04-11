@@ -1,11 +1,5 @@
 # SLO Automatic
 membuat penginputan lebih mudah
-## Setting Account
- Go to [Setting](https://sbudjk.esdm.go.id/setting)
-## Features
-- Auto set maping, not use anymore inspect Element / GPS (must disble gps your browser)
-- Auto click yes in PJT
-- Login with UI friendly
 
 ## Use
 you have to use google chrome and need to install extension [Tampermonkey](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo?hl=id).
@@ -28,3 +22,11 @@ fetch("https://raw.githubusercontent.com/Rizsyad/slo/main/index.js").then(
   (res) => res.text().then((t) => eval(t))
 );
 ```
+
+## Setting Account
+ Go to [Setting](https://sbudjk.esdm.go.id/setting)
+ 
+## Features
+- Auto set maping, not use anymore inspect Element / GPS (must disble gps your browser)
+- Auto click yes in PJT
+- Login with UI friendly
