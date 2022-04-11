@@ -73,7 +73,7 @@ $(document).ready(function () {
   };
 
   const showSettingAkun = () => {
-    fetch("https://raw.githubusercontent.com/Rizsyad/slo-inkindo/main/setting.html")
+    fetch("https://raw.githubusercontent.com/Rizsyad/slo/main/setting.html")
       .then(function (response) {
         return response.text();
       })
