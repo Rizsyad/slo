@@ -4,14 +4,13 @@ $(document).ready(function () {
   var formatTanggal = moment().locale("id").format("LL");
   var replaceTanggal = formatTanggal.replace(/ /gm, "/");
   var url = window.href;
-  var array = ["nama", "alamat", "provinsi", "kota"];
-  var tempat = purl(url).param("tempat");
+  var array = ["nama", "alamat", "provinsi", "kota", "tempat"];
 
   array.map((variabel) => {
     window[variabel] = purl(url).param(variabel);
   });
 
-  if (!nama && !alamat && !provinsi && !kota) {
+  if (!nama && !alamat && !provinsi && !kota && !tempat) {
     Swal.fire({
       icon: "error",
       title: "Oops...",
@@ -22,7 +21,6 @@ $(document).ready(function () {
 
   $("#tanggal").html(replaceTanggal);
   $(".tanggal").html(formatTanggal);
-  $(".tempat").html(tempat || "Bogor");
 
   array.map((data) => {
     $(`.${data}`).html(eval(data));
