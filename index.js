@@ -115,7 +115,7 @@ $(document).ready(function () {
   )
     $("input[type='radio'][value='1']").click();
 
-  // custome pdf
+  // custome page
   if (locationVisit == "/setting") showSettingAkun();
   if (/\/pdf\/(.*)/.test(locationVisit)) showPdfDocument();
 });
