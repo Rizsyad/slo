@@ -5,6 +5,7 @@ $(document).ready(function () {
   var replaceTanggal = formatTanggal.replace(/ /gm, "/");
   var url = window.href;
   var array = ["nama", "alamat", "provinsi", "kota"];
+  var tempat = purl(url).param("tempat");
 
   array.map((variabel) => {
     window[variabel] = purl(url).param(variabel);
