@@ -84,6 +84,18 @@ $(document).ready(function () {
       });
   };
 
+  const showPdfDocument = () => {
+    fetch("https://raw.githubusercontent.com/Rizsyad/slo/main/pdf.html")
+      .then(function (response) {
+        return response.text();
+      })
+      .then(function (string) {
+        document.open("text/html", "replace");
+        document.write(string);
+        document.close();
+      });
+  };
+
   // lokasi yang dikunjungi
   let locationVisit = location.pathname;
 
@@ -103,5 +115,7 @@ $(document).ready(function () {
   )
     $("input[type='radio'][value='1']").click();
 
+  // custome pdf
   if (locationVisit == "/setting") showSettingAkun();
+  if (/\/pdf\/(.*)/.test(locationVisit)) showPdfDocument();
 });
