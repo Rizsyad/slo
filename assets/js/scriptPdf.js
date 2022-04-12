@@ -6,9 +6,14 @@ $(document).ready(function () {
   var url = window.href;
   var array = ["nama", "alamat", "provinsi", "kota", "tempat"];
 
+  const setInputHtml = (select, value) => $(select).html(value);
+
   array.map((variabel) => {
     window[variabel] = purl(url).param(variabel);
   });
+
+  setInputHtml("#tanggal", replaceTanggal);
+  setInputHtml(".tanggal", formatTanggal);
 
   if (!nama && !alamat && !provinsi && !kota && !tempat) {
     Swal.fire({
@@ -19,11 +24,8 @@ $(document).ready(function () {
     return;
   }
 
-  $("#tanggal").html(replaceTanggal);
-  $(".tanggal").html(formatTanggal);
-
   array.map((data) => {
-    $(`.${data}`).html(eval(data));
+    setInputHtml(`.${data}`, eval(data));
   });
 
   pdf.addHTML($("#wrapper").get(0), function () {

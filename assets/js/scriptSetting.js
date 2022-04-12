@@ -3,6 +3,8 @@ $(document).ready(function () {
     window.localStorage.setItem(key, value);
   const getLocalStorage = (key) => window.localStorage.getItem(key);
   const arrayData = (role) => JSON.parse(getLocalStorage(role)) || [];
+  const setInputValue = (select, value) => $(select).val(value);
+  const getInputValue = (select) => $(select).val();
 
   const getAkun = (role, id) => {
     const getData = JSON.parse(getLocalStorage(role));
@@ -92,28 +94,29 @@ $(document).ready(function () {
 
   // add and edit
   const clearInput = () => {
-    $("#role").val("");
-    $("#nama").val("");
-    $("#username").val("");
-    $("#password").val("");
-    $("#id").val("");
+    setInputValue("#role", "");
+    setInputValue("#nama", "");
+    setInputValue("#username", "");
+    setInputValue("#password", "");
+    setInputValue("#id", "");
   };
 
   $(".add-data").on("click", function () {
     clearInput();
     const roleData = $(this).attr("data-role");
-    $("#role").val(roleData);
+    setInputValue("#role", roleData);
     $("#add-modal").modal("show");
     $(".modal-title").text(`Add ${roleData.toUpperCase()}`);
   });
 
   $("#save-data").on("click", function () {
-    const role = $("#role").val();
-    const nama = $("#nama").val();
-    const username = $("#username").val();
-    const password = $("#password").val();
+    const arr = ["role", "nama", "username", "password"];
 
-    const idEdit = $("#id").val();
+    arr.map((vars) => {
+      window[vars] = getInputValue(`${vars}`);
+    });
+
+    const idEdit = getInputValue("#id");
     const isModeEdit = idEdit !== "";
     const kataAlert = isModeEdit ? "Diedit" : "Ditambah";
 
@@ -132,11 +135,11 @@ $(document).ready(function () {
 
     let { nama, username, password } = dataAkun;
 
-    $("#role").val(roleData);
-    $("#nama").val(nama);
-    $("#username").val(username);
-    $("#password").val(password);
-    $("#id").val(idData);
+    setInputValue("#role", roleData);
+    setInputValue("#nama", nama);
+    setInputValue("#username", username);
+    setInputValue("#password", password);
+    setInputValue("#id", idData);
 
     $("#add-modal").modal("show");
     $(".modal-title").text(`Edit ${roleData.toUpperCase()}`);
@@ -169,5 +172,27 @@ $(document).ready(function () {
         });
       }
     });
+  });
+
+  $(".link-buat").on("click", function () {
+    const arr = ["namapemohon", "alamat", "provinsi", "kota", "tempat"];
+
+    arr.map((vars) => {
+      window[vars] = getInputValue(`#${vars}`);
+    });
+
+    if (!namapemohon && !alamat && !provinsi && !kota && !tempat) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Data tidak boleh ada yang kosong!",
+      });
+      return;
+    }
+
+    let url = window.location.href;
+    let pdfUrl = `pdf/?nama=${namapemohon}&alamat=${alamat}&provinsi=${provinsi}&kota=${kota}&tempat=${tempat}`;
+
+    window.open(url.replace("setting", pdfUrl), "_blank");
   });
 });
