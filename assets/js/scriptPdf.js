@@ -21,6 +21,7 @@ $(document).ready(function () {
 
   $("#tanggal").html(replaceTanggal);
   $(".tanggal").html(formatTanggal);
+  $(".tempat").html(tempat || "Bogor");
 
   array.map((data) => {
     $(`.${data}`).html(eval(data));
