@@ -33,7 +33,7 @@ $(document).ready(function () {
     <li class="list-group-item active">Pilih ${roleUpper}</li>`;
 
     dataAkun.forEach((data) => {
-      listMenu += `<li class="list-group-item auto-login" onclick="autoSetFieldLogin('${role}','${data.username}','${data.password}')" >${data.nama}</li>`;
+      listMenu += `<li class="list-group-item auto-login" onclick="autoSetFieldLogin('${role}','${data.username}','${data.password}')" style="cursor: pointer;">${data.nama}</li>`;
     });
 
     listMenu += "</ul></div>";
