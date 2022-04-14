@@ -113,7 +113,7 @@ $(document).ready(function () {
     const arr = ["role", "nama", "username", "password"];
 
     arr.map((vars) => {
-      window[vars] = getInputValue(`${vars}`);
+      window[vars] = getInputValue(`#${vars}`);
     });
 
     const idEdit = getInputValue("#id");
