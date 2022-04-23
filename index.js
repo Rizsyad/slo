@@ -1,7 +1,3 @@
-fetch(
-  "https://cdn.jsdelivr.net/gh/Rizsyad/slo/assets/js/scriptUtilities.min.js"
-).then((res) => res.text().then((t) => eval(t)));
-
 $(document).ready(function () {
   // lokasi yang dikunjungi
   let locationVisit = location.pathname;
