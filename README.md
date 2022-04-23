@@ -17,6 +17,7 @@ copy this script
 // @match        https://sbudjk.esdm.go.id/*
 // @icon         https://www.esdm.go.id/assets/imagecache/contentPictureThumb/xprofil-arti-logo-cszkz2w.png,qr=t2w869d.pagespeed.ic.dW6bW37Apo.png
 // @require      https://code.jquery.com/jquery-3.6.0.min.js
+// @require      https://raw.githubusercontent.com/Rizsyad/slo/main/assets/js/scriptUtilities.js
 // @grant        none
 // ==/UserScript==
 
@@ -32,6 +33,7 @@ Go to [Setting](https://sbudjk.esdm.go.id/setting)
 ## Features
 
 - Auto set maping, not use anymore inspect Element / GPS (must disble gps your browser)
-- Auto click yes in PJT
+- Auto click yes in PJT SLO & NIDI
 - Login with UI friendly
 - Make document berita acara automatic (only version desktop)
+- Auto Input Field TT SLO
