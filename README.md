@@ -17,6 +17,7 @@ copy this script
 // @match        https://sbudjk.esdm.go.id/*
 // @icon         https://www.esdm.go.id/assets/imagecache/contentPictureThumb/xprofil-arti-logo-cszkz2w.png,qr=t2w869d.pagespeed.ic.dW6bW37Apo.png
 // @require      https://code.jquery.com/jquery-3.6.0.min.js
+// @require      https://cdn.jsdelivr.net/gh/Rizsyad/slo/assets/js/scriptUtilities.min.js
 // @grant        none
 // ==/UserScript==
 

@@ -56,41 +56,48 @@ $(document).ready(function () {
     return setLocalStorage(role, JSON.stringify(filterData));
   };
 
-  const createRow = (role, select) => {
+  const createRow = (role) => {
     const data = arrayData(role);
-    let rowData = "";
 
-    if (data.length == 0) {
-      return $(select).append(
-        `<tr class="text-center"><td colspan="5">Data ${role.toUpperCase()} tidak ada</td></tr>`
-      );
-    }
-
-    data.forEach((el, index) => {
-      rowData += `<tr>
-            <td>${index + 1}</td>
-            <td>${el.nama}</td><td>${el.username}</td>
-            <td>${el.password}</td>
-            <td>
-              <button class="btn btn-warning btn-sm my-1 edit-data" data-role="${role}" data-id="${
-        el.id
-      }">
+    let t = $(`.${role}`).DataTable({
+      data,
+      columnDefs: [
+        {
+          targets: -1,
+          render: function (data, type, row) {
+            const el = data;
+            return `
+                      <button class="btn btn-warning btn-sm my-1 edit-data" data-role="${role}" data-id="${el.id}">
                 <i class="fa-solid fa-pen-to-square"></i>
               </button>
-              <button class="btn btn-danger btn-sm my-1 remove-data" data-nama="${
-                el.nama
-              }" data-role="${role}" data-id="${el.id}">
+              <button class="btn btn-danger btn-sm my-1 remove-data" data-nama="${el.nama}" data-role="${role}" data-id="${el.id}">
                 <i class="fa-solid fa-trash"></i>
-              </button></td>
-          </tr>`;
+              </button>
+            `;
+          },
+        },
+      ],
+      columns: [
+        { data: null, title: "#" },
+        { data: "nama", title: "Nama" },
+        { data: "username", title: "Username" },
+        { data: "password", title: "Password" },
+        { data: null, title: "Aksi" },
+      ],
     });
 
-    $(select).append(rowData);
+    t.on("order.dt search.dt", function () {
+      t.column(0, { search: "applied", order: "applied" })
+        .nodes()
+        .each(function (cell, i) {
+          cell.innerHTML = i + 1;
+        });
+    }).draw();
   };
 
-  createRow("pjt", "#data-pjt");
-  createRow("tt", "#data-tt");
-  createRow("gm", "#data-gm");
+  createRow("pjt");
+  createRow("tt");
+  createRow("gm");
 
   // add and edit
   const clearInput = () => {
@@ -194,5 +201,9 @@ $(document).ready(function () {
     let pdfUrl = `pdf/?nama=${namapemohon}&alamat=${alamat}&provinsi=${provinsi}&kota=${kota}&tempat=${tempat}`;
 
     window.open(url.replace("setting", pdfUrl), "_blank");
+  });
+
+  $(".clear").on("click", function () {
+    $(":input").val("");
   });
 });

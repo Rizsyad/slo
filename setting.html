@@ -13,6 +13,14 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap4.min.css"
+    />
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   </head>
@@ -58,17 +66,9 @@
                 Add PJT
               </button>
               <div class="table-responsive mt-3">
-                <table class="table table-bordered table-striped">
-                  <thead class="thead-dark">
-                    <tr>
-                      <th>#</th>
-                      <th>Nama</th>
-                      <th>Username</th>
-                      <th>Password</th>
-                      <th>Aksi</th>
-                    </tr>
-                  </thead>
-                  <tbody id="data-pjt"></tbody>
+                <table class="table table-bordered table-striped pjt">
+                  <thead class="thead-dark"></thead>
+                  <tbody></tbody>
                 </table>
               </div>
             </div>
@@ -77,17 +77,9 @@
                 Add TT
               </button>
               <div class="table-responsive mt-3">
-                <table class="table table-bordered table-striped">
-                  <thead class="thead-dark">
-                    <tr>
-                      <th>#</th>
-                      <th>Nama</th>
-                      <th>Username</th>
-                      <th>Password</th>
-                      <th>Aksi</th>
-                    </tr>
-                  </thead>
-                  <tbody id="data-tt"></tbody>
+                <table class="table table-bordered table-striped tt">
+                  <thead class="thead-dark"></thead>
+                  <tbody></tbody>
                 </table>
               </div>
             </div>
@@ -96,17 +88,9 @@
                 Add GM/Biasa
               </button>
               <div class="table-responsive mt-3">
-                <table class="table table-bordered table-striped">
-                  <thead class="thead-dark">
-                    <tr>
-                      <th>#</th>
-                      <th>Nama</th>
-                      <th>Username</th>
-                      <th>Password</th>
-                      <th>Aksi</th>
-                    </tr>
-                  </thead>
-                  <tbody id="data-gm"></tbody>
+                <table class="table table-bordered table-striped gm">
+                  <thead class="thead-dark"></thead>
+                  <tbody></tbody>
                 </table>
               </div>
             </div>
@@ -159,6 +143,9 @@
               </div>
               <button class="btn btn-primary btn-block mb-3 link-buat">
                 Buat
+              </button>
+              <button class="btn btn-outline-danger btn-block mb-3 clear">
+                Clear
               </button>
             </div>
           </div>
@@ -223,6 +210,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap4.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/Rizsyad/slo/assets/js/scriptSetting.min.js"></script>
   </body>
 </html>
