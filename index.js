@@ -124,7 +124,7 @@ $(document).ready(function () {
         setInputValue(id, jumlahSklarOrFitting);
         break;
       case "#inputan_7780_44380":
-        setInputSelected(id, `${daya} /`);
+        setInputSelectedRegex(id, `${daya} /`);
         break;
       case "#inputan_7780_44381":
         // get phasa automatic
