@@ -1,16 +1,3 @@
-// ==UserScript==
-// @name         Auto SLO INKINDO
-// @namespace    http://tampermonkey.net/
-// @version      1.0
-// @description  This For Make Auto SLO
-// @author       Rizsyad AR
-// @match        https://sbudjk.esdm.go.id/*
-// @icon         https://www.esdm.go.id/assets/imagecache/contentPictureThumb/xprofil-arti-logo-cszkz2w.png,qr=t2w869d.pagespeed.ic.dW6bW37Apo.png
-// @require      https://code.jquery.com/jquery-3.6.0.min.js
-// @require      https://pastebin.com/raw/wuqK4PYS
-// @grant        none
-// ==/UserScript==
-
 $(document).ready(function () {
   const autoWordCatatan = (from, to) =>
     `Pengerjaan ${from} Diterima, Tindak Lanjuti Ke ${to} Untuk Pengecekan Laporan Hasil Pengerjaan ${from}.`;
