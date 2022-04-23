@@ -156,5 +156,5 @@ const AutoSetSLO = (id) => {
     "#inputan_7778_44348": setKodePhb,
   };
 
-  return ObjFieldSLO[id]();
+  ObjFieldSLO[id]();
 };
