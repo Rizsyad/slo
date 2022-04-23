@@ -1,11 +1,4 @@
 $(document).ready(function () {
-  const setLocalStorage = (key, value) =>
-    window.localStorage.setItem(key, value);
-  const getLocalStorage = (key) => window.localStorage.getItem(key);
-  const arrayData = (role) => JSON.parse(getLocalStorage(role)) || [];
-  const setInputValue = (select, value) => $(select).val(value);
-  const getInputValue = (select) => $(select).val();
-
   const getAkun = (role, id) => {
     const getData = JSON.parse(getLocalStorage(role));
     const akun = getData.find((o) => o.id == id);
