@@ -227,6 +227,76 @@ window.autoSetFieldTT = () => {
   });
 };
 
+window.saveInputNewSLO = () => {
+  let json = getInputValue("#autoslo");
+  setLocalStorage("inputNewSLO", json);
+  swal("Sukses", "Data Input DitambahKan", "success");
+};
+
+window.autoManyOpenTabNewSLO = () => {
+  // must allow popups
+  let getDataSLO = arrayData("inputNewSLO");
+  getDataSLO.map((data) => {
+    window.open(
+      `https://sbudjk.esdm.go.id/Daftar-SLO?NIDI=${data.NIDI}`,
+      "_blank"
+    );
+  });
+};
+
+window.autoInputNewSLO = () => {
+  let getDataSLO = arrayData("inputNewSLO");
+  let nidi = location.search.slice(6, location.search.length);
+  getDataSLO = getDataSLO.filter((data) => data.NIDI === nidi);
+
+  getDataSLO.map((data) => {
+    setInputValue("#nomor_identitas", data.NIK);
+    setInputValue("#nidi", data.NIDI);
+    setInputValue("#tanggal_mulai", data.Tanggal_Mulai);
+    setInputValue("#tanggal_estimasi_selesai", data.Tanggal_Selesai);
+    $("#nidi").blur();
+
+    setTimeout(async () => {
+      let jenis_usaha_uid = 3;
+      let bidang_uid = $("#bidang_uid").val();
+      let sub_bidang_uid = $("#sub_bidang_uid").val();
+      let provinsi_uid = $("#provinsi_uid").val();
+      let kota_uid = $("#kota_uid").val();
+      let kecamatan_uid = $("#kecamatan_uid").val();
+      let kelurahan_uid = $("#kelurahan_uid").val();
+      let nama_ulp = $("#nama_ulp").val();
+
+      let myURL = "https://sbudjk.esdm.go.id/Daftar-Penyedia";
+      myURL += "?jenis_usaha_uid=" + jenis_usaha_uid;
+      myURL += "&bidang_uid=" + bidang_uid;
+      myURL += "&sub_bidang_uid=" + sub_bidang_uid;
+      myURL += "&provinsi_uid=" + provinsi_uid;
+      myURL += "&kota_uid=" + kota_uid;
+      myURL += "&kecamatan_uid=" + kecamatan_uid;
+      myURL += "&kelurahan_uid=" + kelurahan_uid;
+      myURL += "&nama_ulp=" + nama_ulp;
+      myURL += "&dari=Lembaga Inspeksi Teknik";
+
+      setElement(
+        ".col-md-12:first",
+        `<iframe style="margin-top: 2rem; margin-bottom: 2rem; width: 100%" src="${myURL}"></iframe>`
+      );
+
+      await Promise.all([
+        $("#jenis_bangunan_uid").val(data.Value_JB).trigger("change"),
+        $("#tipe_layanan").val(data.Value_TL).trigger("change"),
+        clicked(`#kode_kepemilikan_instalasi_${data.Value_KI}`),
+        clicked("#persetujuan"),
+      ]);
+    }, 1000);
+
+    setInterval(async () => {
+      let badan_usaha_uid = $("#badan_usaha_uid").val();
+      if (badan_usaha_uid) return clicked("#simpan_new");
+    }, 1000);
+  });
+};
+
 const menuList = (role) => {
   let dataAkun = arrayData(role);
   let roleUpper = role.toUpperCase();
@@ -302,6 +372,21 @@ const showButtonTT = () => {
   setElementFirst(
     "#Modal-Tambah-Data-Mata-Hasil .modal-body",
     `<button type="button" class="btn btn-primary btn-sm mb-3" onclick="autoSetFieldTT();">Auto Input</button>`
+  );
+};
+
+const showTextAreaDaftarSLO = () => {
+  setElement(
+    ".col-md-12:first",
+    '<textarea class="form-control" id="autoslo" placeholder="input JSON"></textarea>'
+  );
+  setElement(
+    ".col-md-12:first",
+    "<button class='btn btn-primary btn-block my-2' onclick='saveInputNewSLO();' type='button'>Save New SLO</button>"
+  );
+  setElement(
+    ".col-md-12:first",
+    "<button class='btn btn-info btn-block my-2' onclick='autoManyOpenTabNewSLO();' type='button'>Run Auto New SLO</button>"
   );
 };
 
