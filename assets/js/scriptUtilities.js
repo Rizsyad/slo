@@ -404,6 +404,13 @@ const isApproveLocation = (locationVisit) => {
   );
 };
 
+const isEvaluasiLocation = (locationVisit) => {
+  return (
+    /\/Permohonan\/evaluasi_lhpp_slo_tr\/(.*)/.test(locationVisit) ||
+    /\/Permohonan\/evaluasi_lhpp\/(.*)/.test(locationVisit)
+  );
+};
+
 const autoCatatan = (lokasi) => {
   if (isInputMapLocation(lokasi)) {
     return setInputValue(
@@ -412,10 +419,28 @@ const autoCatatan = (lokasi) => {
     );
   }
 
-  if (isApproveLocation(locationVisit)) {
+  if (isApproveLocation(lokasi)) {
     return setInputValue(
       "#catatan",
       autoWordCatatan("Penanggung Jawab Teknik", "GM")
     );
   }
+
+  if (isEvaluasiLocation(lokasi)) {
+    return setInputValue(
+      "#catatan",
+      "Evaluasi Data Hasil Pengerjaan Tenaga Teknik dan Penanggung Jawab Teknik, Data Sesuai Pengerjaan, Tindak Lanjuti Generate SLO"
+    );
+  }
+};
+
+const autoGenerateSLO = () => {
+  let listButtonGenerate = $("button[data-target='#Modal-Declaimer']");
+
+  listButtonGenerate.each(function (i, e) {
+    let funcSLO = $(e).attr("onclick");
+    eval(funcSLO);
+    generate_nidi();
+    clicked(".confirm");
+  });
 };
