@@ -436,13 +436,10 @@ const autoCatatan = (lokasi) => {
 
 const autoGenerateSLO = () => {
   let listButtonGenerate = $("button[data-target='#Modal-Declaimer']");
-
   listButtonGenerate.each(function (i, e) {
     let funcSLO = $(e).attr("onclick");
-    setTimeout(() => {
-      eval(funcSLO);
-      generate_nidi();
-      clicked(".confirm");
-    }, 1500);
+    eval(funcSLO);
+    generate_nidi();
+    clicked(".confirm");
   });
 };
