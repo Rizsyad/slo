@@ -439,8 +439,10 @@ const autoGenerateSLO = () => {
 
   listButtonGenerate.each(function (i, e) {
     let funcSLO = $(e).attr("onclick");
-    eval(funcSLO);
-    generate_nidi();
-    clicked(".confirm");
+    setTimeout(() => {
+      eval(funcSLO);
+      generate_nidi();
+      clicked(".confirm");
+    }, 1500);
   });
 };
