@@ -206,45 +206,28 @@ const autoSetMap = () => {
   setInputValue("#longitude", longTable);
 };
 
-window.autoSetFieldLogin = (role = "", username, password) => {
-  if (role == "pjt" || role == "tt") {
-    setInputValue("#username", username);
-    setInputValue("#pass", password);
-  } else {
-    setInputValue("#email", username);
-    setInputValue("#userpass", password);
-  }
+const autoInputNewNidi = async () => {
+  const getDataNidi = arrayData("nidi");
 
-  $("#btn-login").click();
-};
+  getDataNidi.map((data) => {
+    if (data.type === "input") setInputValue(`#${data.id}`, data.value);
 
-window.autoSetFieldTT = () => {
-  let listIdInput = $(".modal form :input:visible");
+    simpan_koordinatnya();
 
-  listIdInput.each(function () {
-    if (!this.id) return;
-    AutoSetSLO(`#${this.id}`);
+    if (data.type === "selected") {
+      console.log(`#${data.id}`, data.value);
+      setInterval(function () {
+        if (!$(`#${data.id}`).html()) return;
+        if ($(`#${data.id} option:selected`).val() === data.value) return;
+
+        $(`#${data.id}`).val(data.value).trigger("change");
+      }, 1000);
+    }
+    if (data.type === "checked") clicked(`#${data.id}`);
   });
 };
 
-window.saveInputNewSLO = () => {
-  let json = getInputValue("#autoslo");
-  setLocalStorage("inputNewSLO", json);
-  swal("Sukses", "Data Input DitambahKan", "success");
-};
-
-window.autoManyOpenTabNewSLO = () => {
-  // must allow popups
-  let getDataSLO = arrayData("inputNewSLO");
-  getDataSLO.map((data) => {
-    window.open(
-      `https://sbudjk.esdm.go.id/Daftar-SLO?NIDI=${data.NIDI}`,
-      "_blank"
-    );
-  });
-};
-
-window.autoInputNewSLO = () => {
+const autoInputNewSLO = () => {
   let getDataSLO = arrayData("inputNewSLO");
   let nidi = location.search.slice(6, location.search.length);
   getDataSLO = getDataSLO.filter((data) => data.NIDI === nidi);
@@ -292,9 +275,91 @@ window.autoInputNewSLO = () => {
 
     setInterval(async () => {
       let badan_usaha_uid = $("#badan_usaha_uid").val();
-      if (badan_usaha_uid) return clicked("#simpan_new");
+      // if (badan_usaha_uid) return clicked("#simpan_new");
     }, 1000);
   });
+};
+
+const autoGenerateSLO = () => {
+  setTimeout(() => {
+    let listButtonGenerate = $("button[data-target='#Modal-Declaimer']");
+    listButtonGenerate.each(function (i, e) {
+      let funcSLO = $(e).attr("onclick");
+      eval(funcSLO);
+      generate_nidi();
+      clicked(".confirm");
+    });
+  }, 1000);
+};
+
+window.autoSetFieldLogin = (role = "", username, password) => {
+  if (role == "pjt" || role == "tt") {
+    setInputValue("#username", username);
+    setInputValue("#pass", password);
+  } else {
+    setInputValue("#email", username);
+    setInputValue("#userpass", password);
+  }
+
+  $("#btn-login").click();
+};
+
+window.autoSetFieldTT = () => {
+  let listIdInput = $(".modal form :input:visible");
+
+  listIdInput.each(function () {
+    if (!this.id) return;
+    AutoSetSLO(`#${this.id}`);
+  });
+};
+
+window.saveInputNewSLO = () => {
+  let json = getInputValue("#autoslo");
+  setLocalStorage("inputNewSLO", json);
+  swal("Sukses", "Data Input DitambahKan", "success");
+};
+
+window.autoManyOpenTabNewSLO = () => {
+  // must allow popups
+  let getDataSLO = arrayData("inputNewSLO");
+  getDataSLO.map((data) => {
+    window.open(
+      `https://sbudjk.esdm.go.id/Daftar-SLO?NIDI=${data.NIDI}`,
+      "_blank"
+    );
+  });
+};
+
+window.autoManyOpenTabNewNidi = () => {
+  let many = parseInt(prompt("How Many?"));
+
+  if (isNaN(many)) return alert("Please enter a number");
+
+  let obj = [];
+
+  let selected = $("select option:selected");
+  let checked = $("input[type='radio']:visible:checked");
+  let textarea = $("textarea");
+  let inputText = $("input[type='text']:visible");
+  let inputNumber = $("input[type='number']:visible");
+  let inputDate = $("input[type='date']:visible");
+  let inputCheckBox = $("input[type='checkbox']:visible:checked");
+  let hiddenText = $("input[type='hidden'][id!='csrf_test_name']");
+
+  obj.push(...setMapNidi(selected, "selected"));
+  obj.push(...setMapNidi(checked, "checked"));
+  obj.push(...setMapNidi(inputCheckBox, "checked"));
+  obj.push(...setMapNidi(textarea, "input"));
+  obj.push(...setMapNidi(inputText, "input"));
+  obj.push(...setMapNidi(inputNumber, "input"));
+  obj.push(...setMapNidi(inputDate, "input"));
+  obj.push(...setMapNidi(hiddenText, "input"));
+
+  setLocalStorage("nidi", JSON.stringify(obj));
+
+  for (let i = 1; i <= many; i++) {
+    window.open(`https://sbudjk.esdm.go.id/Daftar-Bangsang?auto`, "_blank");
+  }
 };
 
 const menuList = (role) => {
@@ -375,6 +440,13 @@ const showButtonTT = () => {
   );
 };
 
+const showButtonRepeat = () => {
+  setElement(
+    ".readmore",
+    "<button type='button' class='btn btn-info' onclick='autoManyOpenTabNewNidi();'>Create Many</butto>"
+  );
+};
+
 const showTextAreaDaftarSLO = () => {
   setElement(
     ".col-md-12:first",
@@ -434,12 +506,21 @@ const autoCatatan = (lokasi) => {
   }
 };
 
-const autoGenerateSLO = () => {
-  let listButtonGenerate = $("button[data-target='#Modal-Declaimer']");
-  listButtonGenerate.each(function (i, e) {
-    let funcSLO = $(e).attr("onclick");
-    eval(funcSLO);
-    generate_nidi();
-    clicked(".confirm");
+const setMapNidi = (element, type) => {
+  let temp = [];
+
+  element.each((i, v) => {
+    if (!$(v).val() || $(v).val() === "-1") return;
+
+    let id = $(v).attr("id") || $(v).parent().attr("id");
+    let value = $(v).val();
+
+    temp.push({
+      id,
+      type,
+      value,
+    });
   });
+
+  return temp;
 };

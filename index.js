@@ -30,9 +30,11 @@ setTimeout(() => {
     if (locationVisit == "/Daftar-SLO") showTextAreaDaftarSLO();
     if (locationVisit == "/Permohonan/generate_cetak_slo_tr") autoGenerateSLO();
     if (/\/Daftar-SLO\?NIDI=(.*)/.test(location.href)) autoInputNewSLO();
+    if (locationVisit == "/Daftar-Bangsang") showButtonRepeat();
+    if (/\/Daftar-Bangsang\?auto/.test(location.href)) autoInputNewNidi();
 
-    // slo & midi tt
     if (isInputMapLocation(locationVisit)) {
+      // slo & midi tt
       autoSetMap();
       showButtonTT();
       autoCatatan(locationVisit);
@@ -47,6 +49,7 @@ setTimeout(() => {
     if (isEvaluasiLocation(locationVisit)) {
       autoCatatan(locationVisit);
       clicked("#simpan_tanpa_declaimer");
+      clicked(".confirm");
     }
 
     // custome page
