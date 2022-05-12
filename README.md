@@ -36,5 +36,5 @@ Go to [Setting](https://sbudjk.esdm.go.id/setting)
 - Login with UI friendly
 - Make document berita acara automatic (only version desktop)
 - Auto Input Field TT SLO
-- Auto Input New SLO
+- Auto Input New SLO & Nidi
 - Auto Catatan
