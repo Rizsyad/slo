@@ -27,10 +27,10 @@ setTimeout(() => {
     if (locationVisit == "/Beranda" || locationVisit == "/") showLinkBeranda();
     if (locationVisit == "/Login") showListLoginPJT();
     if (locationVisit == "/Pelayanan-Perizinan") showListLoginGM();
-    if (locationVisit == "/Daftar-SLO") showTextAreaDaftarSLO();
     if (locationVisit == "/Permohonan/generate_cetak_slo_tr") autoGenerateSLO();
+    if (locationVisit == "/Daftar-SLO") showButtonDaftarSLO();
     if (/\/Daftar-SLO\?NIDI=(.*)/.test(location.href)) autoInputNewSLO();
-    if (locationVisit == "/Daftar-Bangsang") showButtonRepeat();
+    if (locationVisit == "/Daftar-Bangsang") showButtonDaftarNidi();
     if (/\/Daftar-Bangsang\?auto/.test(location.href)) autoInputNewNidi();
 
     if (isInputMapLocation(locationVisit)) {

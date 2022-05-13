@@ -206,7 +206,31 @@ const autoSetMap = () => {
   setInputValue("#longitude", longTable);
 };
 
-const autoInputNewNidi = async () => {
+const saveDataInputNidiSLO = () => {
+  let obj = [];
+
+  let selected = $("select option:selected");
+  let checked = $("input[type='radio']:visible:checked");
+  let textarea = $("textarea");
+  let inputText = $("input[type='text']:visible");
+  let inputNumber = $("input[type='number']:visible");
+  let inputDate = $("input[type='date']:visible");
+  let inputCheckBox = $("input[type='checkbox']:visible:checked");
+  let hiddenText = $("input[type='hidden'][id!='csrf_test_name']");
+
+  obj.push(...setDataNidiSlo(selected, "selected"));
+  obj.push(...setDataNidiSlo(checked, "checked"));
+  obj.push(...setDataNidiSlo(inputCheckBox, "checked"));
+  obj.push(...setDataNidiSlo(textarea, "input"));
+  obj.push(...setDataNidiSlo(inputText, "input"));
+  obj.push(...setDataNidiSlo(inputNumber, "input"));
+  obj.push(...setDataNidiSlo(inputDate, "input"));
+  obj.push(...setDataNidiSlo(hiddenText, "input"));
+
+  return obj;
+};
+
+const autoInputNewNidi = () => {
   const getDataNidi = arrayData("nidi");
 
   getDataNidi.map((data) => {
@@ -215,11 +239,8 @@ const autoInputNewNidi = async () => {
     simpan_koordinatnya();
 
     if (data.type === "selected") {
-      console.log(`#${data.id}`, data.value);
       setInterval(function () {
-        if (!$(`#${data.id}`).html()) return;
         if ($(`#${data.id} option:selected`).val() === data.value) return;
-
         $(`#${data.id}`).val(data.value).trigger("change");
       }, 1000);
     }
@@ -228,55 +249,29 @@ const autoInputNewNidi = async () => {
 };
 
 const autoInputNewSLO = () => {
-  let getDataSLO = arrayData("inputNewSLO");
+  let getDataSLO = arrayData("slo");
   let nidi = location.search.slice(6, location.search.length);
-  getDataSLO = getDataSLO.filter((data) => data.NIDI === nidi);
 
   getDataSLO.map((data) => {
-    setInputValue("#nomor_identitas", data.NIK);
-    setInputValue("#nidi", data.NIDI);
-    setInputValue("#tanggal_mulai", data.Tanggal_Mulai);
-    setInputValue("#tanggal_estimasi_selesai", data.Tanggal_Selesai);
-    $("#nidi").blur();
+    if (data.type === "input") setInputValue(`#${data.id}`, data.value);
 
-    setTimeout(async () => {
-      let jenis_usaha_uid = 3;
-      let bidang_uid = $("#bidang_uid").val();
-      let sub_bidang_uid = $("#sub_bidang_uid").val();
-      let provinsi_uid = $("#provinsi_uid").val();
-      let kota_uid = $("#kota_uid").val();
-      let kecamatan_uid = $("#kecamatan_uid").val();
-      let kelurahan_uid = $("#kelurahan_uid").val();
-      let nama_ulp = $("#nama_ulp").val();
+    if (data.id === "nidi") {
+      setInputValue("#nidi", nidi);
+      $("#nidi").blur();
+    }
 
-      let myURL = "https://sbudjk.esdm.go.id/Daftar-Penyedia";
-      myURL += "?jenis_usaha_uid=" + jenis_usaha_uid;
-      myURL += "&bidang_uid=" + bidang_uid;
-      myURL += "&sub_bidang_uid=" + sub_bidang_uid;
-      myURL += "&provinsi_uid=" + provinsi_uid;
-      myURL += "&kota_uid=" + kota_uid;
-      myURL += "&kecamatan_uid=" + kecamatan_uid;
-      myURL += "&kelurahan_uid=" + kelurahan_uid;
-      myURL += "&nama_ulp=" + nama_ulp;
-      myURL += "&dari=Lembaga Inspeksi Teknik";
+    if (data.type === "selected") {
+      setInterval(function () {
+        if ($(`#${data.id} option:selected`).val() === data.value) return;
+        $(`#${data.id}`).val(data.value).trigger("change");
+      });
+    }
 
-      setElement(
-        ".col-md-12:first",
-        `<iframe style="margin-top: 2rem; margin-bottom: 2rem; width: 100%" src="${myURL}"></iframe>`
-      );
-
-      await Promise.all([
-        $("#jenis_bangunan_uid").val(data.Value_JB).trigger("change"),
-        $("#tipe_layanan").val(data.Value_TL).trigger("change"),
-        clicked(`#kode_kepemilikan_instalasi_${data.Value_KI}`),
-        clicked("#persetujuan"),
-      ]);
-    }, 1000);
-
-    setInterval(async () => {
-      let badan_usaha_uid = $("#badan_usaha_uid").val();
-      // if (badan_usaha_uid) return clicked("#simpan_new");
-    }, 1000);
+    if (data.type === "checked") {
+      setTimeout(function () {
+        clicked(`#${data.id}`);
+      }, 1000);
+    }
   });
 };
 
@@ -313,20 +308,17 @@ window.autoSetFieldTT = () => {
   });
 };
 
-window.saveInputNewSLO = () => {
-  let json = getInputValue("#autoslo");
-  setLocalStorage("inputNewSLO", json);
-  swal("Sukses", "Data Input DitambahKan", "success");
-};
-
 window.autoManyOpenTabNewSLO = () => {
-  // must allow popups
-  let getDataSLO = arrayData("inputNewSLO");
-  getDataSLO.map((data) => {
-    window.open(
-      `https://sbudjk.esdm.go.id/Daftar-SLO?NIDI=${data.NIDI}`,
-      "_blank"
-    );
+  let nidis = prompt("Input id Nidi, ex: I.xx.2022.xxx1,I.xx.2022.xxx2");
+
+  const dataSLO = saveDataInputNidiSLO();
+
+  setLocalStorage("slo", JSON.stringify(dataSLO));
+
+  let split = nidis.split(",");
+
+  split.map((nidi) => {
+    window.open(`https://sbudjk.esdm.go.id/Daftar-SLO?NIDI=${nidi}`, "_blank");
   });
 };
 
@@ -335,27 +327,9 @@ window.autoManyOpenTabNewNidi = () => {
 
   if (isNaN(many)) return alert("Please enter a number");
 
-  let obj = [];
+  const dataNidi = saveDataInputNidiSLO();
 
-  let selected = $("select option:selected");
-  let checked = $("input[type='radio']:visible:checked");
-  let textarea = $("textarea");
-  let inputText = $("input[type='text']:visible");
-  let inputNumber = $("input[type='number']:visible");
-  let inputDate = $("input[type='date']:visible");
-  let inputCheckBox = $("input[type='checkbox']:visible:checked");
-  let hiddenText = $("input[type='hidden'][id!='csrf_test_name']");
-
-  obj.push(...setMapNidi(selected, "selected"));
-  obj.push(...setMapNidi(checked, "checked"));
-  obj.push(...setMapNidi(inputCheckBox, "checked"));
-  obj.push(...setMapNidi(textarea, "input"));
-  obj.push(...setMapNidi(inputText, "input"));
-  obj.push(...setMapNidi(inputNumber, "input"));
-  obj.push(...setMapNidi(inputDate, "input"));
-  obj.push(...setMapNidi(hiddenText, "input"));
-
-  setLocalStorage("nidi", JSON.stringify(obj));
+  setLocalStorage("nidi", JSON.stringify(dataNidi));
 
   for (let i = 1; i <= many; i++) {
     window.open(`https://sbudjk.esdm.go.id/Daftar-Bangsang?auto`, "_blank");
@@ -440,22 +414,14 @@ const showButtonTT = () => {
   );
 };
 
-const showButtonRepeat = () => {
+const showButtonDaftarNidi = () => {
   setElement(
     ".readmore",
     "<button type='button' class='btn btn-info' onclick='autoManyOpenTabNewNidi();'>Create Many</butto>"
   );
 };
 
-const showTextAreaDaftarSLO = () => {
-  setElement(
-    ".col-md-12:first",
-    '<textarea class="form-control" id="autoslo" placeholder="input JSON"></textarea>'
-  );
-  setElement(
-    ".col-md-12:first",
-    "<button class='btn btn-primary btn-block my-2' onclick='saveInputNewSLO();' type='button'>Save New SLO</button>"
-  );
+const showButtonDaftarSLO = () => {
   setElement(
     ".col-md-12:first",
     "<button class='btn btn-info btn-block my-2' onclick='autoManyOpenTabNewSLO();' type='button'>Run Auto New SLO</button>"
@@ -506,7 +472,7 @@ const autoCatatan = (lokasi) => {
   }
 };
 
-const setMapNidi = (element, type) => {
+const setDataNidiSlo = (element, type) => {
   let temp = [];
 
   element.each((i, v) => {
