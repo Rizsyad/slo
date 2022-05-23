@@ -57,6 +57,13 @@
               role="tab"
               >Buat Dokumen</a
             >
+            <a
+              class="list-group-item list-group-item-action"
+              data-toggle="list"
+              href="#setting"
+              role="tab"
+              >Setting</a
+            >
           </div>
         </div>
         <div class="col-md-8 col-sm-12">
@@ -148,6 +155,20 @@
                 Clear
               </button>
             </div>
+            <div class="tab-pane" id="setting" role="tabpanel">
+              <button
+                class="btn btn-primary mb-3"
+                onclick="localStorageBackup();"
+              >
+                Backup
+              </button>
+              <button
+                class="btn btn-primary mb-3"
+                onclick="localStorageRestore();"
+              >
+                Restore
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -214,5 +235,6 @@
     <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap4.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/Rizsyad/slo/assets/js/scriptSetting.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/Rizsyad/slo/assets/js/scriptUtilities.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/todvora/localstorage-backup/functions.js"></script>
   </body>
 </html>
