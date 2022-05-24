@@ -49,7 +49,6 @@ setTimeout(() => {
     if (isEvaluasiLocation(locationVisit)) {
       autoCatatan(locationVisit);
       clicked("#simpan_tanpa_declaimer");
-      clicked(".confirm");
     }
 
     // custome page
