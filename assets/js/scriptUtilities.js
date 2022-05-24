@@ -276,13 +276,12 @@ const autoInputNewSLO = () => {
 };
 
 const autoGenerateSLO = () => {
-  setTimeout(() => {
+  setInterval(() => {
     let listButtonGenerate = $("button[data-target='#Modal-Declaimer']");
     listButtonGenerate.each(function (i, e) {
       let funcSLO = $(e).attr("onclick");
       eval(funcSLO);
-      generate_nidi();
-      clicked(".confirm");
+      eval(generate_nidi());
     });
   }, 1000);
 };
