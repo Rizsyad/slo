@@ -39,6 +39,10 @@ const AutoSetSLO = (id) => {
     case "#inputan_7782_44421":
       setInputSelected(id, "Biru");
       break;
+    case "#inputan_23_137":
+    case "#inputan_24_147":
+      setInputSelected(id, "Fasa");
+      break;
     case "#inputan_7777_44334":
     case "#inputan_7777_44337":
     case "#inputan_7777_44340":
@@ -53,6 +57,10 @@ const AutoSetSLO = (id) => {
     case "#inputan_7781_44402":
     case "#inputan_7782_44416":
     case "#inputan_7783_44425":
+    case "#inputan_22_126":
+    case "#inputan_23_136":
+    case "#inputan_24_143":
+    case "#inputan_25_149":
       setInputSelected(id, "Ada");
       break;
     case "#inputan_7777_44335":
@@ -72,6 +80,10 @@ const AutoSetSLO = (id) => {
     case "#inputan_7783_44426":
     case "#inputan_7783_44444":
     case "#inputan_7783_44427":
+    case "#inputan_22_134":
+    case "#inputan_23_141":
+    case "#inputan_25_151":
+    case "#inputan_27_173":
       setInputSelected(id, "Sesuai");
       break;
     case "#inputan_7779_44368":
@@ -97,12 +109,18 @@ const AutoSetSLO = (id) => {
     case "#inputan_7781_44395":
     case "#inputan_7782_44411":
     case "#inputan_7782_44412":
+    case "#inputan_24_146":
+    case "#inputan_27_158":
       setInputValue(id, "1");
       break;
     case "#inputan_7778_44433":
     case "#inputan_7781_44439":
     case "#inputan_7782_44441":
     case "#inputan_7783_44443":
+    case "#inputan_22_125":
+    case "#inputan_23_135":
+    case "#inputan_24_142":
+    case "#inputan_25_148":
       setInputValue(id, "Broco");
       break;
     case "#inputan_7778_44350":
@@ -118,7 +136,14 @@ const AutoSetSLO = (id) => {
       break;
     case "#inputan_7782_44410":
     case "#inputan_7783_44423":
+    case "#inputan_22_127":
+    case "#inputan_23_138":
+    case "#inputan_25_150":
       setInputValue(id, jumlahSklarOrFitting);
+      break;
+    case "#inputan_27_160":
+    case "#inputan_27_162":
+      setInputValue(id, "6 ampre");
       break;
     case "#inputan_7780_44380":
       setInputSelectedRegex(id, `${daya} /`);
@@ -130,15 +155,22 @@ const AutoSetSLO = (id) => {
       setInputSelected("#inputan_7780_44381", selectPhasa);
       break;
     case "#inputan_7778_44358":
+    case "#inputan_24_144":
+    case "#inputan_27_165":
+    case "#inputan_27_161":
       setInputSelected(id, "MCB");
       break;
     case "#inputan_7778_44349":
       setInputSelected(id, "PHB utama");
       break;
+    case "#inputan_27_157":
+      setInputSelected(id, "PHB Utama");
+      break;
     case "#inputan_7778_44362":
       setInputSelected(id, "Phasa");
-
+      break;
     case "#inputan_7779_44367":
+    case "#inputan_26_152":
       setInputSelected(id, "TT");
       break;
     case "#inputan_7779_44435":
@@ -150,7 +182,11 @@ const AutoSetSLO = (id) => {
     case "#inputan_7780_44385":
       setInputSelected(id, "Saluran utama");
       break;
+    case "#inputan_21_122":
+      setInputSelected(id, "Saluran Utama");
+      break;
     case "#inputan_7780_44386":
+    case "#inputan_21_120":
       setInputSelected(id, "NYM");
       break;
     case "#inputan_7780_44391":
@@ -177,11 +213,79 @@ const AutoSetSLO = (id) => {
     case "#inputan_7777_88956":
       setInputSelected(id, "PT Perusahaan Listrik Negara (Persero)");
       break;
-
+    case "#inputan_21_119":
+      setInputSelectedRegex(id, "Ada ");
+      break;
+    case "#inputan_21_124":
+      setInputSelected(id, "1");
+      break;
+    case "#inputan_26_153":
+      setInputSelected(id, "Tembaga murni");
+      break;
+    case "#inputan_22_128":
+      setInputSelected(id, "1 Fasa");
+      break;
+    case "#inputan_22_130":
+      setInputSelected(id, "biru");
+      break;
+    case "#inputan_22_131":
+    case "#inputan_26_154":
+      setInputSelected(id, "hijau kuning");
+      break;
+    case "#inputan_22_133":
+      setInputSelected(id, "Kanan");
+      break;
+    case "#inputan_28_171":
+      setInputValue(id, "Diagram instalisasi rumah");
+      break;
+    case "#inputan_30_176":
+      setInputValue(id, "foto tampak depan");
+      break;
+    case "#inputan_31_178":
+      setInputValue(id, "Berita Acara");
+      break;
+    case "#inputan_32_180":
+      setInputValue(id, "pengecekan rumah");
+      break;
+    case "#inputan_24_145":
+      setInputValue(id, "6 ampre");
+      break;
+    case "#inputan_23_139":
+      setInputValue(id, "Biasa");
+      break;
+    case "#inputan_26_155":
+      setInputValue(id, "4 mm");
+      break;
+    case "#inputan_23_140":
+      setInputValue(id, "150 cm");
+      break;
+    case "#inputan_22_129":
+    case "#inputan_27_167":
+      setInputValue(id, "Hitam");
+      break;
+    case "#inputan_27_168":
+      setInputValue(id, "Biru");
+      break;
+    case "#inputan_27_169":
+      setInputValue(id, "hijau kuning");
+      break;
+    case "#inputan_27_156":
+      setInputValue(id, "PHB Rumah");
+      break;
+    case "#inputan_27_170":
+      setInputValue(id, "160 cm");
+      break;
+    case "#inputan_21_123":
+      setInputValue(id, "20 m");
+      break;
+    case "#inputan_22_132":
+      setInputValue(id, "150 cm");
+      break;
     case "#inputan_7780_44387":
       setInputValue(id, "3");
       break;
     case "#inputan_7780_44437":
+    case "#inputan_21_118":
       setInputValue(id, "Eterna");
       break;
     case "#inputan_7778_44360":
@@ -189,6 +293,9 @@ const AutoSetSLO = (id) => {
       break;
     case "#inputan_7778_44348":
       setInputValue(id, "MCB");
+      break;
+    case "#inputan_21_121":
+      setInputValue(id, "3x4 mm");
       break;
     default:
       break;
@@ -307,6 +414,21 @@ window.autoSetFieldTT = () => {
   });
 };
 
+window.toggleHide = () => {
+  let toggle = $("#toggleHide");
+  let isHide = toggle.text() === "Hide";
+
+  if (isHide) {
+    $("table[style='padding-top:10px;display:']").hide();
+    toggle.text("Show");
+    return;
+  }
+
+  $("table[style='padding-top:10px;display:']").show();
+  toggle.text("Hide");
+  return;
+};
+
 window.autoManyOpenTabNewSLO = () => {
   let nidis = prompt("Input id Nidi, ex: I.xx.2022.xxx1,I.xx.2022.xxx2");
 
@@ -410,6 +532,10 @@ const showButtonTT = () => {
   setElementFirst(
     "#Modal-Tambah-Data-Mata-Hasil .modal-body",
     `<button type="button" class="btn btn-primary btn-sm mb-3" onclick="autoSetFieldTT();">Auto Input</button>`
+  );
+  setElement(
+    ".col-sm-12 > div[style='padding-top: 10px']:eq(0)",
+    `<button type="button" class="btn btn-primary btn-sm mb-3" id="toggleHide" onclick="toggleHide();">Hide</button>`
   );
 };
 

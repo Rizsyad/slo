@@ -34,7 +34,7 @@ setTimeout(() => {
     if (/\/Daftar-Bangsang\?auto/.test(location.href)) autoInputNewNidi();
 
     if (isInputMapLocation(locationVisit)) {
-      // slo & midi tt
+      // slo & nidi tt
       autoSetMap();
       showButtonTT();
       autoCatatan(locationVisit);
@@ -48,7 +48,9 @@ setTimeout(() => {
 
     if (isEvaluasiLocation(locationVisit)) {
       autoCatatan(locationVisit);
-      clicked("#simpan_tanpa_declaimer");
+      setTimeout(() => {
+        clicked("#simpan_tanpa_declaimer");
+      }, 1000);
     }
 
     // custome page
