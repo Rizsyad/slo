@@ -88,9 +88,58 @@ $(document).ready(function () {
     }).draw();
   };
 
+  const getProvinsi = () => {
+    fetch("https://dev.farizdotid.com/api/daerahindonesia/provinsi")
+      .then((res) => res.json())
+      .then((data) => {
+        let selectProvinsi = $("#provinsi");
+        let dataProvinsi = data.provinsi;
+
+        $.each(dataProvinsi, (index, item) => {
+          const id = item.id;
+          const name = item.nama;
+
+          selectProvinsi.append(
+            $("<option>", {
+              value: id,
+              text: name,
+            })
+          );
+        });
+      });
+  };
+
   createRow("pjt");
   createRow("tt");
   createRow("gm");
+  getProvinsi();
+
+  // get kota/kabupaten
+  $("#provinsi").on("change", function () {
+    let selectProvinsi = $("#provinsi").val();
+    fetch(
+      `https://dev.farizdotid.com/api/daerahindonesia/kota?id_provinsi=${selectProvinsi}`
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        let selectKota = $("#kota");
+        selectKota.html('<option value="">Input Kota</option>');
+
+        let dataKota = data.kota_kabupaten;
+
+        $.each(dataKota, (index, item) => {
+          const id = item.id;
+          const name = item.nama;
+
+          selectKota.append(
+            $("<option>", {
+              value: id,
+              text: name,
+            })
+          );
+        });
+      });
+  });
 
   // add and edit
   const clearInput = () => {
