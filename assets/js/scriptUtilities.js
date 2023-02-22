@@ -356,30 +356,19 @@ const autoInputNewNidi = () => {
 };
 
 const autoInputNewSLO = () => {
-  let getDataSLO = arrayData("slo");
-  let nidi = location.search.slice(6, location.search.length);
+  const urlSearch = window.location.search;
+  const urlParams = new URLSearchParams(urlSearch);
 
-  getDataSLO.map((data) => {
-    if (data.type === "input") setInputValue(`#${data.id}`, data.value);
+  const nidi = urlParams.get("NIDI");
+  const nik = urlParams.get("NIK");
 
-    if (data.id === "nidi") {
-      setInputValue("#nidi", nidi);
-      $("#nidi").blur();
-    }
+  setInputValue("#nomor_identitas", nik);
+  setInputValue("#nidi", nidi);
+  $("#nomor_identitas").blur();
 
-    if (data.type === "selected") {
-      setInterval(function () {
-        if ($(`#${data.id} option:selected`).val() === data.value) return;
-        $(`#${data.id}`).val(data.value).trigger("change");
-      });
-    }
-
-    if (data.type === "checked") {
-      setTimeout(function () {
-        clicked(`#${data.id}`);
-      }, 1000);
-    }
-  });
+  setTimeout(function () {
+    clicked("#persetujuan");
+  }, 1000);
 };
 
 const autoGenerateSLO = () => {
@@ -429,18 +418,34 @@ window.toggleHide = () => {
   return;
 };
 
-window.autoManyOpenTabNewSLO = () => {
-  let nidis = prompt("Input id Nidi, ex: I.xx.2022.xxx1,I.xx.2022.xxx2");
-
-  const dataSLO = saveDataInputNidiSLO();
-
-  setLocalStorage("slo", JSON.stringify(dataSLO));
-
-  let split = nidis.split(",");
-
-  split.map((nidi) => {
-    window.open(`https://sbudjk.esdm.go.id/Daftar-SLO?NIDI=${nidi}`, "_blank");
+window.autoManyOpenTabNewSLO = async () => {
+  const { value: formValues } = await Swal.fire({
+    title: "Multiple inputs Nidi",
+    html:
+      '<input id="nidis" class="swal2-input" placeholder="Input id Nidi, ex: I.xx.2022.xxx1,I.xx.2022.xxx2. " style="width: 80%">' +
+      '<input id="nik" class="swal2-input" placeholder="Input Nik same register Nidi." style="width: 80%">',
+    width: "500px",
+    focusConfirm: false,
+    preConfirm: () => {
+      return [
+        document.getElementById("nidis").value.replace(/ /g, ""),
+        document.getElementById("nik").value,
+      ];
+    },
   });
+
+  if (formValues[0] != "" && formValues[1] != "") {
+    let nidis = formValues[0];
+    let nik = formValues[1];
+    let split = nidis.split(",");
+
+    split.map((nidi) => {
+      window.open(
+        `https://sbudjk.esdm.go.id/Daftar-SLO?NIDI=${nidi}&NIK=${nik}`,
+        "_blank"
+      );
+    });
+  }
 };
 
 window.autoManyOpenTabNewNidi = () => {
@@ -548,8 +553,8 @@ const showButtonDaftarNidi = () => {
 
 const showButtonDaftarSLO = () => {
   setElement(
-    ".col-md-12:first",
-    "<button class='btn btn-info btn-block my-2' onclick='autoManyOpenTabNewSLO();' type='button'>Run Auto New SLO</button>"
+    "h3[style='padding-bottom:10px;display: ;']",
+    "<button class='btn btn-info btn-block' onclick='autoManyOpenTabNewSLO();' type='button' style='margin-top: 1rem;'>Buat Banyak SLO</button>"
   );
 };
 
