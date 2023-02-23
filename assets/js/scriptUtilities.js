@@ -579,6 +579,13 @@ const isEvaluasiLocation = (locationVisit) => {
   );
 };
 
+const isUserRequest = (locationVisit) => {
+  return (
+    /\/Permohonan\/detail_slo_tr\/(.*)/.test(locationVisit) ||
+    /\/Permohonan\/detail\/(.*)/.test(locationVisit)
+  );
+};
+
 const autoCatatan = (lokasi) => {
   if (isInputMapLocation(lokasi)) {
     return setInputValue(
@@ -598,6 +605,13 @@ const autoCatatan = (lokasi) => {
     return setInputValue(
       "#catatan",
       "Evaluasi Data Hasil Pengerjaan Tenaga Teknik dan Penanggung Jawab Teknik, Data Sesuai Pengerjaan, Tindak Lanjuti Generate SLO"
+    );
+  }
+
+  if (isUserRequest(lokasi)) {
+    return setInputValue(
+      "#catatan",
+      "Menerima Data Dari Pemohon, Tindak Lanjuti Ke Tenaga Teknik Untuk Mengerjakan Laporan Dari Pemohon."
     );
   }
 };

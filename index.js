@@ -41,12 +41,13 @@ setTimeout(() => {
       autoCatatan(locationVisit);
     }
 
-    // slo & midi pjt
+    // slo & nidi pjt
     if (isApproveLocation(locationVisit)) {
       clicked("input[type='radio'][value='1']");
       autoCatatan(locationVisit);
     }
 
+    // slo & nidi GM
     if (isEvaluasiLocation(locationVisit)) {
       autoCatatan(locationVisit);
       setTimeout(() => {
@@ -54,8 +55,15 @@ setTimeout(() => {
       }, 1000);
     }
 
-    // custome page
-    if (locationVisit == "/setting") showSettingAkun();
+    // slo & nidi GM
+    if (isUserRequest(locationVisit)) {
+      clicked("input[type='radio'][value='t']");
+      autoCatatan(locationVisit);
+    }
+
+    if (locationVisit == "/setting")
+      // custome page
+      showSettingAkun();
     if (/\/pdf\/(.*)/.test(locationVisit)) showPdfDocument();
   });
 }, 500);
