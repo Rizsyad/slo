@@ -15,6 +15,7 @@ copy this script
 // @description  This For Make Auto SLO
 // @author       Rizsyad AR
 // @match        https://sbudjk.esdm.go.id/*
+// @match        https://siujang.esdm.go.id/*
 // @icon         https://www.esdm.go.id/assets/imagecache/contentPictureThumb/xprofil-arti-logo-cszkz2w.png,qr=t2w869d.pagespeed.ic.dW6bW37Apo.png
 // @require      https://cdn.jsdelivr.net/gh/Rizsyad/slo/assets/js/scriptUtilities.min.js
 // @grant        none
