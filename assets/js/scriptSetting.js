@@ -224,7 +224,7 @@ $(document).ready(function () {
   });
 
   $(".buat-invoice").on("click", function () {
-    const arr = ["namaklien", "alamat", "jumlah", "slo"];
+    const arr = ["namaklien", "alamatinv", "jumlah", "slo"];
     const hargaSLO = {};
 
     arr.map((vars) => {
