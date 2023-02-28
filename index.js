@@ -64,5 +64,6 @@ setTimeout(() => {
       // custome page
       showSettingAkun();
     if (/\/pdf\/(.*)/.test(locationVisit)) showPdfDocument();
+    if (/\/invoice\/(.*)/.test(locationVisit)) showInvoiceDocument();
   });
 }, 500);

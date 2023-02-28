@@ -22,7 +22,10 @@
           <a class="list-group-item list-group-item-action active" data-toggle="list" href="#pjt" role="tab">PJT</a>
           <a class="list-group-item list-group-item-action" data-toggle="list" href="#tt" role="tab">TT</a>
           <a class="list-group-item list-group-item-action" data-toggle="list" href="#gm" role="tab">GM/Biasa</a>
-          <a class="list-group-item list-group-item-action" data-toggle="list" href="#doc" role="tab">Buat Dokumen</a>
+          <a class="list-group-item list-group-item-action" data-toggle="list" href="#beritaAcara" role="tab">Buat
+            Dokumen</a>
+          <a class="list-group-item list-group-item-action" data-toggle="list" href="#invoice" role="tab">Buat
+            Invoice</a>
           <a class="list-group-item list-group-item-action" data-toggle="list" href="#setting" role="tab">Setting</a>
         </div>
       </div>
@@ -61,7 +64,7 @@
               </table>
             </div>
           </div>
-          <div class="tab-pane" id="doc" role="tabpanel">
+          <div class="tab-pane" id="beritaAcara" role="tabpanel">
             <h1>Berita Acara</h1>
             <div class="form-group">
               <label for="nama">Nama Pemohon: </label>
@@ -84,6 +87,57 @@
               <input type="text" class="form-control" id="tempat" placeholder="Input Tempat Pembuat Surat" />
             </div>
             <button class="btn btn-primary btn-block mb-3 link-buat">
+              Buat
+            </button>
+            <button class="btn btn-outline-danger btn-block mb-3 clear">
+              Clear
+            </button>
+          </div>
+          <div class="tab-pane" id="invoice" role="tabpanel">
+            <h1>Invoice</h1>
+            <div class="form-group">
+              <label for="nama">Nama Klien: </label>
+              <input type="text" class="form-control" id="namaklien" placeholder="Input Nama Klien" />
+            </div>
+            <div class="form-group">
+              <label for="alamat">Alamat</label>
+              <textarea id="alamat" class="form-control" cols="30" rows="10"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="slo">SLO</label>
+              <select id="slo" class="form-control">
+                <option value="">Pilih SLO</option>
+                <option value="450">450 VA</option>
+                <option value="900">900 VA</option>
+                <option value="1300">1300 VA</option>
+                <option value="2200">2200 VA</option>
+                <option value="3500">3500 VA</option>
+                <option value="4400">4400 VA</option>
+                <option value="5500">5500 VA</option>
+                <option value="6600">6600 VA</option>
+                <option value="7700">7700 VA</option>
+                <option value="10600">10600 VA</option>
+                <option value="11000">11000 VA</option>
+                <option value="13200">13200 VA</option>
+                <option value="16500">16500 VA</option>
+                <option value="23000">23000 VA</option>
+                <option value="33000">33000 VA</option>
+                <option value="41500">41500 VA</option>
+                <option value="53000">53000 VA</option>
+                <option value="66000">66000 VA</option>
+                <option value="82500">82500 VA</option>
+                <option value="105000">105000 VA</option>
+                <option value="131000">131000 VA</option>
+                <option value="147000">147000 VA</option>
+                <option value="164000">164000 VA</option>
+                <option value="197000">197000 VA</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="jumlah">Jumlah: </label>
+              <input type="number" class="form-control" id="jumlah" />
+            </div>
+            <button class="btn btn-primary btn-block mb-3 buat-invoice">
               Buat
             </button>
             <button class="btn btn-outline-danger btn-block mb-3 clear">
@@ -147,7 +201,8 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
   <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
   <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap4.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/gh/Rizsyad/slo/assets/js/scriptSetting.min.js"></script>
+  <!-- <script src="https://cdn.jsdelivr.net/gh/Rizsyad/slo/assets/js/scriptSetting.min.js"></script> -->
+  <script src="./assets/js/scriptSetting.js"></script>
   <script src="https://cdn.jsdelivr.net/gh/Rizsyad/slo/assets/js/scriptUtilities.min.js"></script>
   <script src="https://cdn.jsdelivr.net/gh/todvora/localstorage-backup/functions.js"></script>
 </body>

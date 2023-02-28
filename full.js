@@ -563,7 +563,19 @@ setTimeout(() => {
         });
     };
 
-    const showPdfDocument = () => {
+    const showInvoiceDocument = () => {
+      fetch("https://raw.githubusercontent.com/Rizsyad/slo/main/invoice.html")
+        .then(function (response) {
+          return response.text();
+        })
+        .then(function (string) {
+          document.open("text/html", "replace");
+          document.write(string);
+          document.close();
+        });
+    };
+
+    const showBeritaAcaraDocument = () => {
       fetch("https://raw.githubusercontent.com/Rizsyad/slo/main/pdf.html")
         .then(function (response) {
           return response.text();
@@ -719,6 +731,7 @@ setTimeout(() => {
     if (locationVisit == "/setting")
       // custome page
       showSettingAkun();
-    if (/\/pdf\/(.*)/.test(locationVisit)) showPdfDocument();
+    if (/\/berita-acara\/(.*)/.test(locationVisit)) showBeritaAcaraDocument();
+    if (/\/invoice\/(.*)/.test(locationVisit)) showInvoiceDocument();
   });
 }, 500);

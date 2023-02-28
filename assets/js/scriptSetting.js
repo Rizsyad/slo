@@ -223,6 +223,31 @@ $(document).ready(function () {
     });
   });
 
+  $(".buat-invoice").on("click", function () {
+    const arr = ["namaklien", "alamat", "jumlah", "slo"];
+    const hargaSLO = {};
+
+    arr.map((vars) => {
+      window[vars] = getInputValue(`#${vars}`);
+    });
+
+    if (!namaklien && !alamat && !jumlah && !slo) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Data tidak boleh ada yang kosong!",
+      });
+      return;
+    }
+
+    let url = window.location.href;
+    let pdfUrl = `invoice/?nama=${namaklien}&alamat=${alamat}&jumlah=${jumlah}&slo=${slo}`;
+
+    window.open(url.replace("setting", pdfUrl), "_blank");
+
+    // console.log(slo);
+  });
+
   $(".link-buat").on("click", function () {
     const arr = ["namapemohon", "alamat", "provinsi", "kota", "tempat"];
 

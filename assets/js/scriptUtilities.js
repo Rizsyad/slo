@@ -531,6 +531,18 @@ const showPdfDocument = () => {
     });
 };
 
+const showInvoiceDocument = () => {
+  fetch("https://raw.githubusercontent.com/Rizsyad/slo/main/invoice.html")
+    .then(function (response) {
+      return response.text();
+    })
+    .then(function (string) {
+      document.open("text/html", "replace");
+      document.write(string);
+      document.close();
+    });
+};
+
 const showButtonTT = () => {
   setElementFirst(
     "#Modal-Tambah-Data-Mata-Hasil .modal-body",
