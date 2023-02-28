@@ -60,9 +60,8 @@ setTimeout(() => {
       autoCatatan(locationVisit);
     }
 
-    if (locationVisit == "/setting")
-      // custome page
-      showSettingAkun();
+    // custome page
+    if (locationVisit == "/setting") showSettingAkun();
     if (/\/pdf\/(.*)/.test(locationVisit)) showPdfDocument();
     if (/\/invoice\/(.*)/.test(locationVisit)) showInvoiceDocument();
   });

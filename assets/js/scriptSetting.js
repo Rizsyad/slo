@@ -231,7 +231,7 @@ $(document).ready(function () {
       window[vars] = getInputValue(`#${vars}`);
     });
 
-    if (!namaklien && !alamat && !jumlah && !slo) {
+    if (!namaklien && !alamatinv && !jumlah && !slo) {
       Swal.fire({
         icon: "error",
         title: "Oops...",
@@ -241,7 +241,7 @@ $(document).ready(function () {
     }
 
     let url = window.location.href;
-    let pdfUrl = `invoice/?nama=${namaklien}&alamat=${alamat}&jumlah=${jumlah}&slo=${slo}`;
+    let pdfUrl = `invoice/?nama=${namaklien}&alamat=${alamatinv}&jumlah=${jumlah}&slo=${slo}`;
 
     window.open(url.replace("setting", pdfUrl), "_blank");
 

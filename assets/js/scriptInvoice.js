@@ -2,7 +2,6 @@ var pdf = new jsPDF("p", "pt", "a4");
 
 $(document).ready(function () {
   var formatTanggal = moment().locale("id").format("LL");
-  var replaceTanggal = formatTanggal.replace(/ /gm, "/");
   var url = window.href;
   var array = ["nama", "alamat", "jumlah", "slo"];
 
@@ -12,8 +11,7 @@ $(document).ready(function () {
     window[variabel] = purl(url).param(variabel);
   });
 
-  //   setInputHtml("#tanggal", replaceTanggal);
-  //   setInputHtml(".tanggal", formatTanggal);
+  setInputHtml(".tanggal", formatTanggal);
 
   if (!nama && !alamat && !jumlah && !slo) {
     Swal.fire({
