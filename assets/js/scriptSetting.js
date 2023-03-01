@@ -244,8 +244,6 @@ $(document).ready(function () {
     let pdfUrl = `invoice/?nama=${namaklien}&alamat=${alamatinv}&jumlah=${jumlah}&slo=${slo}`;
 
     window.open(url.replace("setting", pdfUrl), "_blank");
-
-    // console.log(slo);
   });
 
   $(".link-buat").on("click", function () {
