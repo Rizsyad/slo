@@ -225,7 +225,6 @@ $(document).ready(function () {
 
   $(".buat-invoice").on("click", function () {
     const arr = ["namaklien", "alamatinv", "jumlah", "slo"];
-    const hargaSLO = {};
 
     arr.map((vars) => {
       window[vars] = getInputValue(`#${vars}`);
