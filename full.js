@@ -463,31 +463,17 @@ setTimeout(() => {
     };
 
     window.autoManyOpenTabNewSLO = async () => {
-      // const { value: formValues } = await Swal.fire({
-      //   title: "Multiple inputs Nidi",
-      //   html:
-      //     '<input id="nidis" class="swal2-input" placeholder="Input id Nidi, ex: I.xx.2022.xxx1,I.xx.2022.xxx2. " style="width: 80%">' +
-      //     '<input id="nik" class="swal2-input" placeholder="Input Nik same register Nidi." style="width: 80%">',
-      //   width: "500px",
-      //   focusConfirm: false,
-      //   preConfirm: () => {
-      //     return [
-      //       document.getElementById("nidis").value.replace(/ /g, ""),
-      //       document.getElementById("nik").value,
-      //     ];
-      //   },
-      // });
-      // if (formValues[0] != "" && formValues[1] != "") {
-      //   let nidis = formValues[0];
-      //   let nik = formValues[1];
-      //   let split = nidis.split(",");
-      //   split.map((nidi) => {
-      //     window.open(
-      //       `https://sbudjk.esdm.go.id/Daftar-SLO?NIDI=${nidi}&NIK=${nik}`,
-      //       "_blank"
-      //     );
-      //   });
-      // }
+      const nidis = prompt("Input id Nidi, ex: I.xx.2022.xxx1,I.xx.2022.xxx2.");
+      const nik = prompt("Input Nik same register Nidi.");
+
+      let split = nidis.split(",");
+
+      split.map((nidi) => {
+        window.open(
+          `https://sbudjk.esdm.go.id/Daftar-SLO?NIDI=${nidi}&NIK=${nik}`,
+          "_blank"
+        );
+      });
     };
 
     window.autoManyOpenTabNewNidi = () => {
@@ -725,7 +711,7 @@ setTimeout(() => {
     // slo & nidi GM
     if (isUserRequest(locationVisit)) {
       clicked("input[type='radio'][value='t']");
-      autfoCatatan(locationVisit);
+      autoCatatan(locationVisit);
     }
 
     if (locationVisit == "/setting")
