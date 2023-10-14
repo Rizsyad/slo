@@ -4,7 +4,6 @@ $(document).ready(function () {
   var formatTanggal = moment().locale("id").format("LL");
   var url = window.href;
   var array = ["nama", "alamat", "jumlah", "slo"];
-  // Rp. 132.000,-
 
   const hargaSLO = {
     450: 40000,
