@@ -420,10 +420,9 @@ window.toggleHide = () => {
 };
 
 window.autoManyOpenTabNewSLO = async () => {
-  const nidis = prompt("Input id Nidi, ex: I.xx.2022.xxx1,I.xx.2022.xxx2.");
-  const nik = prompt("Input Nik same register Nidi.");
-
-  let split = nidis.split(",");
+  const nidis = $("#nidis").val();
+  const nik = $("#nik").val();
+  let split = nidis.split("\n");
 
   split.map((nidi) => {
     window.open(
@@ -431,6 +430,11 @@ window.autoManyOpenTabNewSLO = async () => {
       "_blank"
     );
   });
+};
+
+window.showAutoManyOpenTabNewSLO = async () => {
+  const showNewSLO = $("#showNewSLO");
+  showNewSLO.toggle();
 };
 
 window.autoManyOpenTabNewNidi = () => {
@@ -551,7 +555,19 @@ const showButtonDaftarNidi = () => {
 const showButtonDaftarSLO = () => {
   setElement(
     "h3[style='padding-bottom:10px;display: ;']",
-    "<button class='btn btn-info btn-block' onclick='autoManyOpenTabNewSLO();' type='button' style='margin-top: 1rem;'>Buat Banyak SLO</button>"
+    `<button class='btn btn-info btn-block' onclick='showAutoManyOpenTabNewSLO();' type='button' style='margin-top: 1rem;'>Buat Banyak SLO</button>
+        <div id='showNewSLO' style='display: none;'>
+          <div class='form-group'>
+            <label for='nik'>NIK</label>
+            <input type='text' class='form-control' id='nik' placeholder='Masukan NIK' />
+          </div>
+          <div class='form-group'>
+            <label for='nidis'>NIDI</label>
+            <textarea id="nidis" class="form-control" style="height: 300px;" placeholder='I.xx.2022.xxx1\nI.xx.2022.xxx2\nI.xx.2022.xxx3\nI.xx.2022.xxx4\nI.xx.2022.xxx5'></textarea>
+          </div>
+          <button class='btn btn-primary' onclick='autoManyOpenTabNewSLO()'>Jalankan</button>
+        </div>
+        `
   );
 };
 
