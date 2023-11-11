@@ -19,6 +19,10 @@ async function load() {
 
 load();
 
+window.alert = function (message) {
+  return null;
+};
+
 setTimeout(() => {
   $(document).ready(function () {
     // lokasi yang dikunjungi
