@@ -1,6 +1,8 @@
 const setInputValue = (select, value) => $(select).val(value);
 const setInputSelected = (select, value) =>
   $(`select${select} option[value="${value}"]`).attr("selected", "selected");
+const setInputSelectedSelect2 = (select, value) =>
+  $(`select${select}`).val(value).trigger("change");
 const setInputSelectedRegex = (select, value) =>
   $(`select${select} option[value^="${value}"]`).attr("selected", "selected");
 const getInputValue = (select) => $(select).val();
@@ -368,6 +370,8 @@ const autoInputNewSLO = () => {
   $("#nomor_identitas").blur();
 
   setTimeout(function () {
+    setInputSelectedSelect2("#jenis_bangunan_uid", 7);
+    setInputSelectedSelect2("#tipe_layanan", 1);
     clicked("#persetujuan");
   }, 1000);
 };

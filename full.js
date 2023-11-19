@@ -40,6 +40,8 @@ setTimeout(() => {
         "selected",
         "selected"
       );
+    const setInputSelectedSelect2 = (select, value) =>
+      $(`select${select}`).val(value).trigger("change");
     const setInputSelectedRegex = (select, value) =>
       $(`select${select} option[value^="${value}"]`).attr(
         "selected",
@@ -410,8 +412,10 @@ setTimeout(() => {
       setInputValue("#nomor_identitas", nik);
       setInputValue("#nidi", nidi);
       $("#nomor_identitas").blur();
-
+      
       setTimeout(function () {
+        setInputSelectedSelect2("#jenis_bangunan_uid", 7);
+        setInputSelectedSelect2("#tipe_layanan", 1);
         clicked("#persetujuan");
       }, 1000);
     };
